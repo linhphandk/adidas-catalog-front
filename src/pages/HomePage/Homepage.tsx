@@ -1,16 +1,22 @@
 import PropTypes from 'prop-types';
 import React,
-{Dispatch, FunctionComponent, useEffect} from 'react';
+{Dispatch, FunctionComponent, useEffect, useState} from 'react';
 import {connect, MapStateToProps} from 'react-redux';
 import ItemGrid from '../../components/ItemGrid/ItemGrid';
 import IRootReducer from '../../ducks/IRootReducer';
 import {getShoesAction} from '../../ducks/Shoes/reducer_shoes';
 import IShoes from '../../ducks/Shoes/IShoes';
 import ItemPreview from '../../components/ItemPreview/ItemPreview';
+import Pagination from '../../components/Pagination/pagination';
 const HomePage: FunctionComponent<IProps> = (props) => {
+  const [page, setPage] = useState(1);
   useEffect(()=>{
-    props.getShoes();
+    props.getShoes(page);
   }, []);
+
+  useEffect(()=>{
+    props.getShoes(page);
+  }, [page]);
 
   useEffect(()=>{
     console.log();
@@ -20,22 +26,36 @@ const HomePage: FunctionComponent<IProps> = (props) => {
   }, [props.shoes]);
 
   return (
-    <ItemGrid>
-      {
-        props.shoes.map((item:IShoes) =>(
-          <ItemPreview
-            key={item.product_id}
-            image={JSON.parse(item.images)[0]}
-            text={item.product_name}
-          />),
-        )
-      }
-    </ItemGrid>
+    <>
+      <ItemGrid>
+        {
+          props.shoes.map((item:IShoes) =>(
+            <ItemPreview
+              key={item.product_id}
+              image={JSON.parse(item.images)[0]}
+              text={item.product_name}
+            />),
+          )
+        }
+      </ItemGrid>
+      <Pagination
+        items={[1, 2, 3, 4, 5]}
+        clickItemHandler={(item:number)=>{
+          setPage(item);
+        }}
+        clickPrevHandler={()=>{
+          setPage(page-1);
+        }}
+        clickNextHandler={()=>{
+          setPage(page+1);
+        }}
+      />
+    </>
   );
 };
 
 interface IProps{
-    getShoes: ()=>void,
+    getShoes: (page:number)=>void,
     shoes: IShoes[]
 }
 
@@ -50,8 +70,8 @@ any, any, any> = (state:IRootReducer)=>({
 });
 
 const mapDispatchToProps = (dispatch:Dispatch<any>) =>({
-  getShoes: ()=> {
-    dispatch(getShoesAction);
+  getShoes: (page:number)=> {
+    dispatch(getShoesAction(page));
   },
 });
 

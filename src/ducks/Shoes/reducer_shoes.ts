@@ -20,9 +20,9 @@ const ShoesActionTypes = {
   GET_SHOES: 'GET_SHOES',
 };
 
-export const getShoesAction = {
+export const getShoesAction = (page:number)=>({
   type: ShoesActionTypes.GET_SHOES,
-  payload: axios.get('http://localhost:8001/shoes?page=3&items=10'),
-};
+  payload: axios.get('http://localhost:8001/shoes?page='+page+'&items=10'),
+});
 
 export default ShoesReducer;
