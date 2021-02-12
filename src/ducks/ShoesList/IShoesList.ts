@@ -1,5 +1,6 @@
 /* eslint-disable camelcase */
 export default interface IShoes{
+    shoes_id: number,
     brand: string,
     description: string,
     discount: string
@@ -13,3 +14,11 @@ export default interface IShoes{
     sale_price: number
     url: string
 };
+
+export interface IShoesThumbnail{
+    shoes_id: number,
+    image: string,
+    url: string
+    product_name: string,
+
+}

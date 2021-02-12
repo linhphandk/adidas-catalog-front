@@ -2,10 +2,6 @@ import {shallow} from 'enzyme';
 import React from 'react';
 import Pagination from './pagination';
 
-import Enzyme from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-
-Enzyme.configure({adapter: new Adapter()});
 describe('Pagination', ()=>{
   it('should contain 5 items', ()=>{
     const items = [1, 2, 3, 4, 5];

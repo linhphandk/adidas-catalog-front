@@ -1,8 +1,10 @@
 import axios, {AxiosResponse} from 'axios';
 import {Reducer} from 'react';
-import IShoes from './IShoes';
+import {SHOES_API} from '../../shared';
+import {IShoesThumbnail} from './IShoesList';
 
-const ShoesReducer:Reducer<IShoes[], IGetShoesAction> = (state = [], action)=>{
+const ShoesReducer:Reducer<IShoesThumbnail[], IGetShoesAction> =
+(state = [], action)=>{
   switch (action.type) {
     case ShoesActionTypes.GET_SHOES:
       return action.payload.data;
@@ -13,7 +15,7 @@ const ShoesReducer:Reducer<IShoes[], IGetShoesAction> = (state = [], action)=>{
 
 interface IGetShoesAction{
     type: string,
-    payload: AxiosResponse<IShoes[]>
+    payload: AxiosResponse<IShoesThumbnail[]>
 }
 
 const ShoesActionTypes = {
@@ -22,7 +24,7 @@ const ShoesActionTypes = {
 
 export const getShoesAction = (page:number)=>({
   type: ShoesActionTypes.GET_SHOES,
-  payload: axios.get('http://localhost:8001/shoes?page='+page+'&items=10'),
+  payload: axios.get(SHOES_API+'shoes?page='+page+'&items=10'),
 });
 
 export default ShoesReducer;

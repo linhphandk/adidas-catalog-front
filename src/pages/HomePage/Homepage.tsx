@@ -4,8 +4,8 @@ import React,
 import {connect, MapStateToProps} from 'react-redux';
 import ItemGrid from '../../components/ItemGrid/ItemGrid';
 import IRootReducer from '../../ducks/IRootReducer';
-import {getShoesAction} from '../../ducks/Shoes/reducer_shoes';
-import IShoes from '../../ducks/Shoes/IShoes';
+import {getShoesAction} from '../../ducks/ShoesList/reducer_shoesList';
+import {IShoesThumbnail} from '../../ducks/ShoesList/IShoesList';
 import ItemPreview from '../../components/ItemPreview/ItemPreview';
 import Pagination from '../../components/Pagination/pagination';
 const HomePage: FunctionComponent<IProps> = (props) => {
@@ -21,7 +21,7 @@ const HomePage: FunctionComponent<IProps> = (props) => {
   useEffect(()=>{
     console.log();
     if (props.shoes.length>0) {
-      console.log(JSON.parse(props.shoes[0].images));
+      console.log(props.shoes[0].image);
     };
   }, [props.shoes]);
 
@@ -29,10 +29,11 @@ const HomePage: FunctionComponent<IProps> = (props) => {
     <>
       <ItemGrid>
         {
-          props.shoes.map((item:IShoes) =>(
+          props.shoes.map((item:IShoesThumbnail) =>(
             <ItemPreview
-              key={item.product_id}
-              image={JSON.parse(item.images)[0]}
+              itemId={item.shoes_id}
+              key={item.shoes_id}
+              image={item.image}
               text={item.product_name}
             />),
           )
@@ -56,7 +57,7 @@ const HomePage: FunctionComponent<IProps> = (props) => {
 
 interface IProps{
     getShoes: (page:number)=>void,
-    shoes: IShoes[]
+    shoes: IShoesThumbnail[]
 }
 
 HomePage.propTypes = {
@@ -66,7 +67,7 @@ HomePage.propTypes = {
 
 const mapStateToProps:MapStateToProps<
 any, any, any> = (state:IRootReducer)=>({
-  shoes: state.ShoesReducer,
+  shoes: state.ShoesList,
 });
 
 const mapDispatchToProps = (dispatch:Dispatch<any>) =>({
