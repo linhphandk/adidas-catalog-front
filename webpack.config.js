@@ -27,6 +27,9 @@ module.exports = {
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
+    alias: {
+      '@Components': path.resolve(__dirname, 'src/components'),
+    },
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -35,7 +38,7 @@ module.exports = {
     }),
   ],
   mode: 'development',
-  devServer:{ 
-      historyApiFallback: true,
-  }
+  devServer: {
+    historyApiFallback: true,
+  },
 };

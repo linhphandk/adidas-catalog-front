@@ -7,7 +7,7 @@ import IRootReducer from '../../ducks/IRootReducer';
 import {getShoesAction} from '../../ducks/ShoesList/reducer_shoesList';
 import {IShoesThumbnail} from '../../ducks/ShoesList/IShoesList';
 import ItemPreview from '../../components/ItemPreview/ItemPreview';
-import Pagination from '../../components/Pagination/pagination';
+import Pagination from '@Components/Pagination';
 const HomePage: FunctionComponent<IProps> = (props) => {
   const [page, setPage] = useState(1);
   useEffect(()=>{
@@ -41,15 +41,18 @@ const HomePage: FunctionComponent<IProps> = (props) => {
       </ItemGrid>
       <Pagination
         items={[1, 2, 3, 4, 5]}
-        clickItemHandler={(item:number)=>{
+        clickItemHandler={(item: number) => {
           setPage(item);
         }}
-        clickPrevHandler={()=>{
-          setPage(page-1);
+        clickPrevHandler={() => {
+          setPage(page - 1);
         }}
-        clickNextHandler={()=>{
-          setPage(page+1);
+        clickNextHandler={() => {
+          setPage(page + 1);
         }}
+        activeValue={1}
+        prevAvailable={false}
+        nextAvailable={true}
       />
     </>
   );

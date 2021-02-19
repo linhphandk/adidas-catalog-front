@@ -1,4 +1,4 @@
-import { IShoeImage } from "../../pages/ShoePage/ShoePage";
+import {IShoeImage} from '../../pages/ShoePage/ShoePage';
 
 export interface ISliderProps{
     images:IShoeImage[]|undefined,

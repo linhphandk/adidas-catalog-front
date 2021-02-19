@@ -10,7 +10,8 @@
     "eslint": "eslint",
     "test": "jest --coverage",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "lint": "eslint"
   },
   "repository": {
     "type": "git",
@@ -32,13 +33,15 @@
     "react-router-dom": "^5.2.0",
     "redux": "^3.0.5",
     "redux-promise": "^0.6.0",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "module-alias": "^2.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
     "@storybook/addon-actions": "^6.1.15",
     "@storybook/addon-essentials": "^6.1.15",
     "@storybook/addon-links": "^6.1.15",
+    "@storybook/addon-viewport": "^6.1.18",
     "@storybook/react": "^6.1.15",
     "@types/enzyme": "^3.10.8",
     "@types/enzyme-adapter-react-16": "^1.0.6",
@@ -71,5 +74,8 @@
   },
   "jest": {
     "setupTestFrameworkScriptFile": "<rootDir>/src/test-setup.js"
+  },
+  "_moduleAliases": {
+    "@Components": "./src/components"
   }
 }
