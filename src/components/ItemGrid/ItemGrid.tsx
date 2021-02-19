@@ -13,14 +13,19 @@ interface IItemGrid {
 }
 
 const StyledGrid = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction:column;
-  width:100%;
-  @media screen and (min-width: 768px){
+  @media only screen and (min-width: 768px){
+    display: flex;
+    flex-wrap: wrap;
     flex-direction: row;
     justify-content: flex-start;
-    & > * {
+  }
+  
+   & > * {
+    @media only screen and (min-width: 768px){
+      flex-basis: calc(33.3% - 20px);
+      margin: 10px;
+    };
+    @media only screen and (min-width: 1024px){
       flex-basis: calc(25% - 20px);
       margin: 10px;
     }
