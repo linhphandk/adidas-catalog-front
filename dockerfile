@@ -2,9 +2,11 @@ FROM node:14.15.4-alpine3.10
 
 WORKDIR /app
 
-COPY ["package.json", "package-lock.json*", "./"]
+RUN ls
 
-RUN npm install --production
+COPY ./package.json ./package-lock.json ./
+
+RUN npm install
 
 COPY . .
 
