@@ -21,7 +21,7 @@ const StyledTitle = styled.p`
 `;
 const StyledPreviewImage = styled.img`
   width:100%;
-  height:100%;
+  height:200px;
   object-fit: contain
 `;
 

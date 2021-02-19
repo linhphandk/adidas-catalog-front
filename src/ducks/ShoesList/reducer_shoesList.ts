@@ -4,7 +4,7 @@ import {SHOES_API} from '../../shared';
 import {IShoesThumbnail} from './IShoesList';
 
 const ShoesReducer:Reducer<IShoesThumbnail[], IGetShoesAction> =
-(state = [], action)=>{
+  (state = [], action) => {
   switch (action.type) {
     case ShoesActionTypes.GET_SHOES:
       return action.payload.data;

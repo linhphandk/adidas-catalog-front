@@ -11,6 +11,6 @@ export default {
 export const Primary = ()=>(
   <Slider
     images={[Spooderman]}
-    default={0}/>
+    defaultIndex={0}/>
 
 );

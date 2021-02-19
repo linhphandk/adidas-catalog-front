@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack serve --hot",
-    "start:docker": "webpack serve --host 0.0.0.0 --port 8080",
+    "start:docker": "webpack serve --host 0.0.0.0 --port 8080 --hot",
     "build": "webpack",
     "eslint": "eslint",
     "test": "jest --coverage",

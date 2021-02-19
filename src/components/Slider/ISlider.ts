@@ -1,4 +1,6 @@
+import { IShoeImage } from "../../pages/ShoePage/ShoePage";
+
 export interface ISliderProps{
-    images:string[],
-    default: number
+    images:IShoeImage[]|undefined,
+    defaultIndex: number
 }
