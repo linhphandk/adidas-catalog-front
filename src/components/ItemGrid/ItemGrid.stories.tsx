@@ -1,4 +1,5 @@
 import ItemGrid from './ItemGrid';
+import {BrowserRouter as Router} from 'react-router-dom';
 
 import {Meta} from '@storybook/react/types-6-0';
 import React, {ReactNode} from 'react';
@@ -12,11 +13,13 @@ export default {
 const items: ReactNode[] = [];
 for (let i = 0; i<10; i++) {
   items.push(
-      <ItemPreview text="test" image={'https://www.andreasreiterer.at/wp-content/uploads/2017/11/react-logo-825x510.jpg'}/>,
+      <ItemPreview itemId={i} text="test" image={'https://www.andreasreiterer.at/wp-content/uploads/2017/11/react-logo-825x510.jpg'}/>,
   );
 }
 export const Primary: React.VFC<{}> = () => (
-  <ItemGrid>
-    {items}
-  </ItemGrid>
+  <Router>
+    <ItemGrid>
+      {items}
+    </ItemGrid>
+  </Router>
 );

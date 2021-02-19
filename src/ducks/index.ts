@@ -1,8 +1,8 @@
 import {combineReducers} from 'redux';
 import IRootReducer from './IRootReducer';
-import ShoesReducer from './Shoes/reducer_shoes';
+import ShoesList from './ShoesList/reducer_shoesList';
 const rootReducer:IRootReducer = {
-  ShoesReducer,
+  ShoesList,
 };
 
-export default combineReducers({...rootReducer});
+export default combineReducers<IRootReducer>({...rootReducer});

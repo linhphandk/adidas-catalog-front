@@ -1,12 +1,15 @@
 import React, {FunctionComponent} from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
 const ItemPreview:FunctionComponent<IItemPreviewProps> = (props) => {
   return (
     <StyledPreview>
-      {props.text? <StyledTitle>{props.text}</StyledTitle>:<></>}
+      <Link to={'shoes/'+props.itemId}>
+        {props.text? <StyledTitle>{props.text}</StyledTitle>:<></>}
 
-      <StyledPreviewImage src={props.image}/>
+        <StyledPreviewImage src={props.image}/>
+      </Link>
     </StyledPreview>
   );
 };
@@ -18,7 +21,7 @@ const StyledTitle = styled.p`
 `;
 const StyledPreviewImage = styled.img`
   width:100%;
-  height:100%;
+  height:200px;
   object-fit: contain
 `;
 
@@ -31,6 +34,7 @@ const StyledPreview = styled.div`
 ItemPreview.propTypes = {
   image: PropTypes.string.isRequired,
   text: PropTypes.string,
+  itemId: PropTypes.number.isRequired,
 };
 
 ItemPreview.defaultProps = {
@@ -38,7 +42,8 @@ ItemPreview.defaultProps = {
 };
 interface IItemPreviewProps{
     image:string,
-    text: string|undefined
+    text: string|undefined,
+    itemId: number
 
 }
 export default ItemPreview;
