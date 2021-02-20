@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const StyledPagination = styled.div`
-  display:flex
+  display: inline-flex
 `;
 export const StyledPageSwitcher = styled.div`
   display:flex;

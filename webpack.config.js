@@ -16,7 +16,7 @@ module.exports = {
         exclude: /node_modules/,
       },
       {
-        test: /\.(png|jpe?g|gif)$/i,
+        test: /\.(png|jpe?g|gif|svg)$/i,
         use: [
           {
             loader: 'file-loader',
@@ -29,6 +29,9 @@ module.exports = {
     extensions: ['.tsx', '.ts', '.js'],
     alias: {
       '@Components': path.resolve(__dirname, 'src/components'),
+      '@Images': path.resolve(__dirname, 'src/assets/images'),
+      '@Helpers': path.resolve(__dirname, 'src/helpers'),
+
     },
   },
   plugins: [

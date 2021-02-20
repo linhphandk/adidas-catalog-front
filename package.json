@@ -76,6 +76,8 @@
     "setupTestFrameworkScriptFile": "<rootDir>/src/test-setup.js"
   },
   "_moduleAliases": {
-    "@Components": "./src/components"
+    "@Components": "./src/components",
+    "@Images": "./src/assets/images",
+    "@Helpers": "./src/helpers"
   }
 }

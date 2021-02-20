@@ -7,51 +7,52 @@ import {ISliderProps} from './ISlider';
 const Slider:FC<ISliderProps> = (props)=>{
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [imageIndexes, setImageIndexes] = useState<number[]>(
-    Helpers.moveDefaultIndexToBegin(props.images, props.defaultIndex)
-  )
-  const [touchStartPosition, setTouchStartPosition] = useState < number | null>(null)
-  const [touchEndPosition, setTouchEndPosition] = useState<number | null>(null)
+      Helpers.moveDefaultIndexToBegin(props.images, props.defaultIndex),
+  );
+  const
+    [touchStartPosition, setTouchStartPosition] = useState<number | null>(null);
+  const [touchEndPosition, setTouchEndPosition] = useState<number | null>(null);
 
-  useEffect(() => { 
+  useEffect(() => {
     setImageIndexes(
-      Helpers.moveDefaultIndexToBegin(props.images, props.defaultIndex)
-    )
-  }, [props.images])
-  
+        Helpers.moveDefaultIndexToBegin(props.images, props.defaultIndex),
+    );
+  }, [props.images]);
+
   const nextImageHandler: () => void = () => {
-    if (activeImageIndex + 2 > imageIndexes.length)
-      return
+    if (activeImageIndex + 2 > imageIndexes.length) {
+      return;
+    }
     setActiveImageIndex(activeImageIndex+1);
   };
 
   const prevImageHandler: () => void = () => {
-    if (activeImageIndex - 1 < 0) { 
-      return
+    if (activeImageIndex - 1 < 0) {
+      return;
     }
     setActiveImageIndex(activeImageIndex - 1);
   };
 
   const touchStartHandler = (e: React.TouchEvent<HTMLDivElement>) => {
-    setTouchStartPosition(e.changedTouches[0].pageX)
-    
+    setTouchStartPosition(e.changedTouches[0].pageX);
   };
 
   const touchEndHandler = (e: React.TouchEvent<HTMLDivElement>) => {
-    setTouchEndPosition(e.changedTouches[0].pageX)
+    setTouchEndPosition(e.changedTouches[0].pageX);
     const touchDelta = touchEndPosition && touchStartPosition ?
       touchEndPosition - touchStartPosition :
-      null
+      null;
 
     if (touchDelta === null) {
-      return
+      return;
     }
     if (touchDelta > 0) {
-      prevImageHandler()
+      prevImageHandler();
     } else {
-      nextImageHandler()
+      nextImageHandler();
     }
   };
-  
+
   return (
     <StyledSliderWrapper
       onTouchStart={touchStartHandler}
@@ -65,10 +66,11 @@ const Slider:FC<ISliderProps> = (props)=>{
               key={image.shoes_image_id}
               src={image.image}
               className={
-                  props.images?.indexOf(image) === imageIndexes[activeImageIndex] ? 'active': ''
+                props.images?.indexOf(image) === imageIndexes[activeImageIndex]?
+                  'active' : ''
               }
             />
-           
+
           );
         })
       }
@@ -94,11 +96,12 @@ StyledSliderImage.displayName='StyledSliderImage';
 
 Slider.propTypes = {
   images: PropTypes.array,
+  defaultIndex: PropTypes.number.isRequired,
 };
 
 Slider.defaultProps = {
   defaultIndex: 0,
-  images: []
+  images: [],
 };
 
 export default Slider;

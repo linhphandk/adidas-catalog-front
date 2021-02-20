@@ -5,7 +5,7 @@ import {
   StyledPageSwitcher, StyledPagination, StyledPaginationItem,
 } from './Pagination.style';
 
-const Pagination:React.FC<IPaginationProps> = (props)=>{
+const Pagination: React.FC<IPaginationProps> = (props) => {
   return (
     <StyledPagination>
       <StyledPageSwitcher

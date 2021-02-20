@@ -4,7 +4,7 @@ export default interface IShoes{
     brand: string,
     description: string,
     discount: string
-    images: string,
+    image: string,
     last_visited: string,
     listing_price: number,
     product_id: string,
@@ -15,10 +15,7 @@ export default interface IShoes{
     url: string
 };
 
-export interface IShoesThumbnail{
-    shoes_id: number,
-    image: string,
-    url: string
-    product_name: string,
-
-}
+export interface IShoesObject {
+    shoes: IShoes[],
+    count: number
+};
