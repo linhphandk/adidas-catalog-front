@@ -45,24 +45,18 @@ export default class Helpers {
       if (numberOfPages === 0) {
         return [];
       }
-      const result = [];
-      for (
-        let i = activePage;
-        i < activePage + shownPages && i <= numberOfPages;
-        i++) {
-        result.push(i);
+      const result = new Array(shownPages);
+      const positionIndicator = shownPages / 2;
+
+      if (activePage < positionIndicator) {
+        result[activePage - 1] = activePage;
+      } else if (numberOfPages - activePage < positionIndicator) {
+        result[shownPages - (numberOfPages - activePage) - 1] = activePage;
+      } else {
+        result[Math.floor(positionIndicator)] = activePage;
       }
-      if (result.length === 0) {
-        return [];
-      }
-      /**
-       * Add page to the beginning until you
-       * have shownPages length
-       */
-      while (result.length < shownPages && result[0] !== 1) {
-        result.unshift(result[0] - 1);
-      }
-      return result;
+      console.log(result);
+      return Helpers.getPopulatedArray(result);
     };
 
   /**
@@ -77,4 +71,47 @@ export default class Helpers {
         Math.ceil(count / itemsPerPage) :
         count / itemsPerPage;
     };
+  /**
+ * Takes array that has only 1 defined item
+ * and fills the rest n+1
+ * @method
+ * @param {Array<number | undefined>} array - array that has only 1 defined
+ * item
+ * @return {number[]} populated array
+ */
+  public static getPopulatedArray:
+    (array: Array<number | undefined>) => number[] =
+    (array) => {
+      const definedIndex = array.indexOf(array.find(
+          (item) => (item !== undefined),
+      ));
+
+      /**
+       * prefill beginning
+       */
+      for (let i = definedIndex - 1; i >= 0; i--) {
+        const nextItem = array[i + 1];
+        if (nextItem) {
+          array[i] = nextItem - 1;
+        } else {
+          array[i] = undefined;
+        }
+      }
+      /**
+       * prefill end
+       */
+      for (let i = definedIndex + 1; i < array.length; i++) {
+        const prevItem = array[i - 1];
+        if (prevItem) {
+          array[i] = prevItem + 1;
+        } else {
+          array[i] = undefined;
+        }
+      }
+      if (array.indexOf(undefined) === -1) {
+        return array as number[];
+      } else {
+        return [];
+      }
+    }
 }
