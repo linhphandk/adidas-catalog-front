@@ -28,6 +28,7 @@ const HomePage: FunctionComponent<IProps> = (props) => {
 
   useEffect(() => {
     setPage(1);
+    props.getShoes(1, numberOfItems);
   }, [numberOfItems]);
 
   const numberOfItemsHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
