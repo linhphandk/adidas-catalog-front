@@ -11,7 +11,9 @@ describe('Slider', ()=>{
     const component = shallow(
         <Slider
           images={ShoesImagesMock}
-          defaultIndex={1} />);
+          defaultIndex={1}
+        />);
+
     expect(component.find('StyledSliderImage').length).toBe(5);
   });
 

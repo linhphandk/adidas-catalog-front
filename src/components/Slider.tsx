@@ -1,13 +1,25 @@
 import PropTypes from 'prop-types';
 import React, {FC, useEffect, useState} from 'react';
-import styled from 'styled-components';
 import Helpers from '@Helpers/Helpers';
 import {ISliderProps} from './Slider.interface';
 import ArrowIcon from '@Images/arrow.svg';
+import LoadingIcon from '@Images/loading.base64';
+import {
+  StyledSliderWrapper,
+  StyledSliderButton,
+  StyledImageWrapper,
+  StyledSliderImage,
+  StyledLoadingIcon,
+} from './Slider.style';
 const Slider:FC<ISliderProps> = (props)=>{
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [imageIndexes, setImageIndexes] = useState<number[]>(
       Helpers.moveDefaultIndexToBegin(props.images, props.defaultIndex),
+  );
+  const [numberOfLoadedImages, setNumberOfLoadedImages] = useState(
+    process.env.NODE_ENV === 'test' ?
+      props.images.length :
+      0,
   );
   const
     [touchStartPosition, setTouchStartPosition] = useState<number | null>(null);
@@ -54,6 +66,10 @@ const Slider:FC<ISliderProps> = (props)=>{
     setTouchEndPosition(e.changedTouches[0].pageX);
   };
 
+  const imageLoadedHandler = () => {
+    setNumberOfLoadedImages(numberOfLoadedImages + 1);
+  };
+
   return (
     <StyledSliderWrapper
       onTouchStart={touchStartHandler}
@@ -69,7 +85,7 @@ const Slider:FC<ISliderProps> = (props)=>{
         onClick={prevImageHandler}
         src={ArrowIcon}
       />
-      <div>
+      <StyledImageWrapper>
         {
           props.images?.map((image) => {
             return (
@@ -77,15 +93,21 @@ const Slider:FC<ISliderProps> = (props)=>{
                 key={image.shoes_image_id}
                 src={image.image}
                 className={
-                props.images?.indexOf(image) === imageIndexes[activeImageIndex]?
-                  'active' : ''
+                props.images?.indexOf(image)===imageIndexes[activeImageIndex]&&
+                props.images.length === numberOfLoadedImages?
+                    'active' : ''
                 }
+                onLoad={imageLoadedHandler}
               />
 
             );
           })
         }
-      </div>
+        {
+          props.images.length > numberOfLoadedImages ?
+            <StyledLoadingIcon src={LoadingIcon} />:''
+        }
+      </StyledImageWrapper>
       <StyledSliderButton
         className={
           'button__next ' +
@@ -99,38 +121,6 @@ const Slider:FC<ISliderProps> = (props)=>{
   );
 };
 
-const StyledSliderWrapper = styled.div`
-width:100%;
-height:300px;
-position:relative;
-display:flex;
-align-items: center;
-`;
-
-const StyledSliderImage = styled.img`
-  display:none;
-  width:100%;
-  object-fit: cover;
-  &.active{
-    display:block
-  }
-`;
-
-const StyledSliderButton = styled.img`
-height:10%;
-opacity: 0.5;
-&.button__next{
-  right:0
-}
-&.button__prev{
-  transform: rotate(180deg);
-}
-&.active{
-  opacity:1
-}
-`;
-
-StyledSliderImage.displayName='StyledSliderImage';
 
 Slider.propTypes = {
   images: PropTypes.array.isRequired,
