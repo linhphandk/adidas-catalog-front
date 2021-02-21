@@ -8,7 +8,7 @@
     "start:docker": "webpack serve --host 0.0.0.0 --port 8080 --hot",
     "build": "webpack",
     "eslint": "eslint",
-    "test": "jest --coverage",
+    "test": "jest --no-cache",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "lint": "eslint"
@@ -72,12 +72,10 @@
     "webpack-cli": "^4.4.0",
     "webpack-dev-server": "^3.11.2"
   },
-  "jest": {
-    "setupTestFrameworkScriptFile": "<rootDir>/src/test-setup.js"
-  },
   "_moduleAliases": {
     "@Components": "./src/components",
     "@Images": "./src/assets/images",
-    "@Helpers": "./src/helpers"
+    "@Helpers": "./src/helpers",
+    "@Mockdata": "./src/mockdata"
   }
 }

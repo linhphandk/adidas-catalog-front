@@ -1,3 +1,8 @@
+const path = require('path');
+
+// your app's webpack.config.js
+const custom = require('../webpack.config.js');
+
 module.exports = {
   "stories": [
     "../src/components/**/*.stories.mdx",
@@ -17,4 +22,18 @@ module.exports = {
       propFilter: (prop) => (prop.parent ? !/node_modules/.test(prop.parent.fileName) : true),
     },
   },
+  webpackFinal: (config) => {
+    return {
+      ...config,
+      module: {
+        ...config.module,
+        rules: custom.module.rules
+      },
+      resolve: {
+        ...config.resolve,
+        ...custom.resolve
+      }
+      
+    };
+  }
 }

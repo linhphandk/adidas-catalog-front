@@ -1,43 +1,16 @@
-import {shallow} from 'enzyme';
+import {mount, shallow} from 'enzyme';
+import {ShoesImagesMock} from '../../mockdata/ShoesMock';
 import React from 'react';
-import {IShoeImage} from '../../pages/ShoePage/ShoePage';
 import Slider from './Slider';
-const shoeImages: IShoeImage[] = [{
-  shoes_image_id: 1,
-  image: '1',
-  fk_shoes: 1,
-  is_default: true,
-},
-{
-  shoes_image_id: 2,
-  image: '2',
-  fk_shoes: 1,
-  is_default: true,
-},
-{
-  shoes_image_id: 3,
-  image: '3',
-  fk_shoes: 1,
-  is_default: true,
-},
-{
-  shoes_image_id: 4,
-  image: '4',
-  fk_shoes: 1,
-  is_default: true,
-},
-{
-  shoes_image_id: 5,
-  image: '5',
-  fk_shoes: 1,
-  is_default: true,
-}];
-
+import {JSDOM} from 'jsdom';
+const doc = new JSDOM('<!doctype html><html><body></body></html>');
+global.document = doc.window.document;
+global.window = doc.window as unknown as Window & typeof globalThis;
 describe('Slider', ()=>{
   it('should render 5 images', ()=>{
     const component = shallow(
         <Slider
-          images={shoeImages}
+          images={ShoesImagesMock}
           defaultIndex={1} />);
     expect(component.find('StyledSliderImage').length).toBe(5);
   });
@@ -45,7 +18,7 @@ describe('Slider', ()=>{
   it('default image should have .active class', ()=>{
     const component = shallow(
         <Slider
-          images={shoeImages}
+          images={ShoesImagesMock}
           defaultIndex={2} />);
 
     expect(
@@ -59,7 +32,7 @@ describe('Slider', ()=>{
   it('should set the second image as active', ()=>{
     const component = shallow(
         <Slider
-          images={shoeImages}
+          images={ShoesImagesMock}
           defaultIndex={1} />);
     expect(
         component
@@ -72,7 +45,7 @@ describe('Slider', ()=>{
   it('should set the 2nd image as active after clicking next', ()=>{
     const component = shallow(
         <Slider
-          images={shoeImages}
+          images={ShoesImagesMock}
           defaultIndex={0}
         />,
     );
@@ -89,7 +62,7 @@ describe('Slider', ()=>{
   it('should not be able to go to previous when on first image', () => {
     const component = shallow(
         <Slider
-          images={shoeImages}
+          images={ShoesImagesMock}
           defaultIndex={0}
         />,
     );
@@ -106,14 +79,13 @@ describe('Slider', ()=>{
   it('should not be able to go to next when on last image', () => {
     const component = shallow(
         <Slider
-          images={shoeImages}
+          images={ShoesImagesMock}
           defaultIndex={0}
         />,
     );
-    for (let i = 0; i < shoeImages.length; i++) {
+    for (let i = 0; i < ShoesImagesMock.length; i++) {
       component.find('.button__next').simulate('click');
     }
-    console.log(component.html());
 
     expect(
         component
@@ -121,5 +93,83 @@ describe('Slider', ()=>{
             .last()
             .hasClass('active'),
     ).toBeTruthy();
+  });
+
+  it('should set the secont image as active on left swipe', async (done) => {
+    const component = mount(
+        <Slider
+          images={ShoesImagesMock}
+          defaultIndex={0}
+        />,
+    );
+
+    component.simulate('touchstart', {
+      changedTouches: [
+        {
+          pageX: 150,
+        },
+      ],
+    });
+    component.simulate('touchend', {
+      changedTouches: [
+        {
+          pageX: 4,
+        },
+      ],
+    });
+
+    expect(
+        component
+            .find('StyledSliderImage')
+            .at(1)
+            .hasClass('active'),
+    ).toBeTruthy();
+    done();
+  });
+  it('should set the first image as active on right swipe', async (done) => {
+    const component = mount(
+        <Slider
+          images={ShoesImagesMock}
+          defaultIndex={0}
+        />,
+    );
+
+    component.simulate('touchstart', {
+      changedTouches: [
+        {
+          pageX: 150,
+        },
+      ],
+    });
+    component.simulate('touchend', {
+      changedTouches: [
+        {
+          pageX: 4,
+        },
+      ],
+    });
+
+    component.simulate('touchstart', {
+      changedTouches: [
+        {
+          pageX: 1,
+        },
+      ],
+    });
+    component.simulate('touchend', {
+      changedTouches: [
+        {
+          pageX: 150,
+        },
+      ],
+    });
+
+    expect(
+        component
+            .find('StyledSliderImage')
+            .first()
+            .hasClass('active'),
+    ).toBeTruthy();
+    done();
   });
 });

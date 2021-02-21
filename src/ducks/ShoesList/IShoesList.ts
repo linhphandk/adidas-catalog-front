@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-export default interface IShoes{
+export default interface IShoesDetail{
     shoes_id: number,
     brand: string,
     description: string,
@@ -15,7 +15,19 @@ export default interface IShoes{
     url: string
 };
 
-export interface IShoesObject {
-    shoes: IShoes[],
+export interface IShoesList {
+    shoes: IShoesDetail[],
     count: number
 };
+
+export interface IShoes {
+    shoesDetail: IShoesDetail,
+    images: IShoesImage[]
+};
+
+export interface IShoesImage {
+    shoes_image_id: number,
+    image: string,
+    fk_shoes: number,
+    is_default: boolean
+}

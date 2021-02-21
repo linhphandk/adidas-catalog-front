@@ -5,12 +5,12 @@ import React, {
 import {connect, MapStateToProps} from 'react-redux';
 import IRootReducer from '../ducks/IRootReducer';
 import {getShoesAction} from '../ducks/ShoesList/reducer_shoesList';
-import {IShoesObject} from '../ducks/ShoesList/IShoesList';
+import {IShoesList} from '../ducks/ShoesList/IShoesList';
 import ItemPreview from '@Components/ItemPreview/ItemPreview';
 import Pagination from '@Components/Pagination';
 import ItemGrid from '@Components/ItemGrid/ItemGrid';
 import {
-  StyledHeader, StyledLogo, StyledPaginationWrapper, StyledShoeList,
+  StyledPaginationWrapper, StyledShoeList,
 } from './Homepage.styles';
 import Helpers from '@Helpers/Helpers';
 
@@ -23,7 +23,6 @@ const HomePage: FunctionComponent<IProps> = (props) => {
   }, []);
 
   useEffect(() => {
-    console.log(setPage);
     props.getShoes(page, numberOfItems);
   }, [page]);
 
@@ -47,12 +46,6 @@ const HomePage: FunctionComponent<IProps> = (props) => {
 
   return (
     <>
-      <StyledHeader>
-        <h1>
-          {'Catalog by '}
-        </h1>
-        <StyledLogo src={require('@Images/logo.svg').default}/>
-      </StyledHeader>
       <StyledShoeList>
         {'Items Per page: '}
         <select onChange={numberOfItemsHandler}>
@@ -117,7 +110,7 @@ const HomePage: FunctionComponent<IProps> = (props) => {
 
 interface IProps{
     getShoes: (page:number, numberOfItems: number)=>void,
-    shoesObject: IShoesObject
+    shoesObject: IShoesList
 }
 
 HomePage.propTypes = {

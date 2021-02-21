@@ -1,6 +1,6 @@
-import {IShoeImage} from '../../pages/ShoePage/ShoePage';
+import {IShoesImage} from 'src/ducks/ShoesList/IShoesList';
 
 export interface ISliderProps{
-    images:IShoeImage[]|undefined,
+    images:IShoesImage[],
     defaultIndex: number
 }

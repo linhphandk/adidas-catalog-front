@@ -16,6 +16,12 @@ const App:FunctionComponent = ()=>{
     <Provider store={store as any}>
       <Router>
         <StyledPageWrapper>
+          <StyledHeader>
+            <h1>
+              {'Catalog by '}
+            </h1>
+            <StyledLogo src={require('@Images/logo.svg').default} />
+          </StyledHeader>
           <Switch>
             <Route exact path="/" component={HomePage} />
             <Route path="/shoes/:id" component={ShoesPage} />
@@ -32,6 +38,17 @@ const StyledPageWrapper = styled.div`
   left: 50%;
   transform:translateX(-50%);
   position:relative;
+  padding: 25px;
+`;
+
+export const StyledHeader = styled.div`
+display:flex;
+justify-content: center;
+margin-bottom: 45px
+`;
+
+export const StyledLogo = styled.img`
+width: 50px
 `;
 
 export default App;

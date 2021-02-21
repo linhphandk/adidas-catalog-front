@@ -1,8 +1,8 @@
 import {Meta} from '@storybook/react/types-6-0';
+import {ShoesImagesMock} from '../../mockdata/ShoesMock';
 import React from 'react';
 import Slider from './Slider';
 
-const Spooderman = require('../../mockdata/images/spooderman.jpeg');
 export default {
   title: 'Component/slider',
   component: Slider,
@@ -10,7 +10,6 @@ export default {
 
 export const Primary = ()=>(
   <Slider
-    images={[Spooderman]}
+    images={ShoesImagesMock}
     defaultIndex={0}/>
-
 );

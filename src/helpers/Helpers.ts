@@ -54,7 +54,6 @@ export default class Helpers {
       }
 
       while (result.length < shownPages && result[0] !== 1) {
-        console.log(result);
         result.unshift(result[0] - 1);
       }
       return result;

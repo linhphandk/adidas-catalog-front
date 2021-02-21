@@ -1,6 +1,6 @@
 import {Reducer} from 'react';
-import {IShoesObject} from './ShoesList/IShoesList';
+import {IShoesList} from './ShoesList/IShoesList';
 
 export default interface IRootReducer{
-    ShoesObject: Reducer<IShoesObject, any>
+    ShoesObject: Reducer<IShoesList, any>
 };

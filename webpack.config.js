@@ -26,11 +26,12 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ['.tsx', '.ts', '.js'],
+    extensions: ['.tsx', '.ts', '.js', '.jpeg'],
     alias: {
       '@Components': path.resolve(__dirname, 'src/components'),
       '@Images': path.resolve(__dirname, 'src/assets/images'),
       '@Helpers': path.resolve(__dirname, 'src/helpers'),
+      '@Mockdata': path.resolve(__dirname, 'src', 'mockdata'),
 
     },
   },

@@ -1,9 +1,9 @@
 import axios, {AxiosResponse} from 'axios';
 import {Reducer} from 'react';
 import {SHOES_API} from '../../shared';
-import {IShoesObject} from './IShoesList';
+import {IShoesList} from './IShoesList';
 
-const ShoesReducer:Reducer<IShoesObject, IGetShoesAction> =
+const ShoesReducer:Reducer<IShoesList, IGetShoesAction> =
   (state = {shoes: [], count: 0}, action) => {
     switch (action.type) {
       case ShoesActionTypes.GET_SHOES:
@@ -15,7 +15,7 @@ const ShoesReducer:Reducer<IShoesObject, IGetShoesAction> =
 
 interface IGetShoesAction{
     type: string,
-    payload: AxiosResponse<IShoesObject>
+    payload: AxiosResponse<IShoesList>
 }
 
 const ShoesActionTypes = {
