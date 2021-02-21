@@ -5,7 +5,7 @@ import Widow from './images/widow.jpeg';
 import Panther from './images/panther.jpg';
 import Nasus from './images/nasus.jpg';
 
-export const ShoesImagesMock: IShoesImage[] = [
+const ShoesImagesMock: IShoesImage[] = [
   {
     shoes_image_id: 1,
     image: Spooderman,
@@ -37,3 +37,5 @@ export const ShoesImagesMock: IShoesImage[] = [
     fk_shoes: 1,
   },
 ];
+
+export default ShoesImagesMock;

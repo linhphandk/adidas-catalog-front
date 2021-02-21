@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import React, {FC, useEffect, useState} from 'react';
 import styled from 'styled-components';
-import Helpers from '../../helpers/Helpers';
-import {ISliderProps} from './ISlider';
+import Helpers from '@Helpers/Helpers';
+import {ISliderProps} from './Slider.interface';
 import ArrowIcon from '@Images/arrow.svg';
 const Slider:FC<ISliderProps> = (props)=>{
   const [activeImageIndex, setActiveImageIndex] = useState(0);
@@ -59,30 +59,7 @@ const Slider:FC<ISliderProps> = (props)=>{
       onTouchStart={touchStartHandler}
       onTouchEnd={touchEndHandler}
     >
-      <StyledSliderButton
-        className={
-          'button__next ' +
-  (activeImageIndex < props.images.length - 1 ?
-            'active': '')
-        }
-        onClick={nextImageHandler}
-        src={ArrowIcon}
-      />
-      {
-        props.images?.map((image) => {
-          return (
-            <StyledSliderImage
-              key={image.shoes_image_id}
-              src={image.image}
-              className={
-                props.images?.indexOf(image) === imageIndexes[activeImageIndex]?
-                  'active' : ''
-              }
-            />
 
-          );
-        })
-      }
       <StyledSliderButton
         className={
           'button__prev ' +
@@ -90,6 +67,32 @@ const Slider:FC<ISliderProps> = (props)=>{
             'active' : '')
         }
         onClick={prevImageHandler}
+        src={ArrowIcon}
+      />
+      <div>
+        {
+          props.images?.map((image) => {
+            return (
+              <StyledSliderImage
+                key={image.shoes_image_id}
+                src={image.image}
+                className={
+                props.images?.indexOf(image) === imageIndexes[activeImageIndex]?
+                  'active' : ''
+                }
+              />
+
+            );
+          })
+        }
+      </div>
+      <StyledSliderButton
+        className={
+          'button__next ' +
+          (activeImageIndex < props.images.length - 1 ?
+            'active' : '')
+        }
+        onClick={nextImageHandler}
         src={ArrowIcon}
       />
     </StyledSliderWrapper>
@@ -100,13 +103,13 @@ const StyledSliderWrapper = styled.div`
 width:100%;
 height:300px;
 position:relative;
+display:flex;
+align-items: center;
 `;
-
 
 const StyledSliderImage = styled.img`
   display:none;
   width:100%;
-  height:100%;
   object-fit: cover;
   &.active{
     display:block
@@ -114,16 +117,13 @@ const StyledSliderImage = styled.img`
 `;
 
 const StyledSliderButton = styled.img`
-position:absolute;
-top:50%;
-transform: translateY(-50%);
 height:10%;
 opacity: 0.5;
 &.button__next{
   right:0
 }
 &.button__prev{
-  transform: rotate(180deg) translateY(50%);
+  transform: rotate(180deg);
 }
 &.active{
   opacity:1

@@ -31,7 +31,7 @@ module.exports = {
       '@Components': path.resolve(__dirname, 'src/components'),
       '@Images': path.resolve(__dirname, 'src/assets/images'),
       '@Helpers': path.resolve(__dirname, 'src/helpers'),
-      '@Mockdata': path.resolve(__dirname, 'src', 'mockdata'),
+      '@Mockdata': path.resolve(__dirname, 'src/mockdata'),
 
     },
   },

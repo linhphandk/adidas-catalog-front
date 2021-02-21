@@ -12,8 +12,8 @@ module.exports = {
      '<rootDir>/__mocks__/fileMock.js',
     '@Components': path.resolve(__dirname, 'src/components'),
     '^@Images/(.+)$': '<rootDir>/src/assets/images/$1',
-    '@Helpers': path.resolve(__dirname, 'src/helpers'),
-    '@Mockdata': path.resolve(__dirname, 'src', 'mockdata'),
+    '@Helpers/(.+)$': '<rootDir>/src/helpers/$1',
+    '@Mockdata/(.+)$': '<rootDir>/src/mockdata/$1',
 
   },
 };

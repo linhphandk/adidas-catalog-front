@@ -1,5 +1,5 @@
 import {mount, shallow} from 'enzyme';
-import {ShoesImagesMock} from '../../mockdata/ShoesMock';
+import ShoesImagesMock from '@Mockdata/ShoesMock';
 import React from 'react';
 import Slider from './Slider';
 import {JSDOM} from 'jsdom';
