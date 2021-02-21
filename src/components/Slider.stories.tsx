@@ -1,5 +1,5 @@
 import {Meta} from '@storybook/react/types-6-0';
-import {ShoesImagesMock} from '../../mockdata/ShoesMock';
+import ShoesImagesMock from '@Mockdata/ShoesMock';
 import React from 'react';
 import Slider from './Slider';
 

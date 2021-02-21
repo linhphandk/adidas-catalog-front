@@ -26,18 +26,8 @@ const HomePage: FunctionComponent<IProps> = (props) => {
     props.getShoes(page, numberOfItems);
   }, [page]);
 
-  useEffect(()=>{
-    if (props.shoesObject.shoes.length>0) {
-      console.log(props.shoesObject.shoes[0].image);
-    };
-  }, [props.shoesObject]);
-
   useEffect(() => {
-    if (page === 1) {
-      props.getShoes(page, numberOfItems);
-    } else {
-      setPage(1);
-    }
+    setPage(1);
   }, [numberOfItems]);
 
   const numberOfItemsHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -70,12 +60,6 @@ const HomePage: FunctionComponent<IProps> = (props) => {
           }
         </ItemGrid>
         <StyledPaginationWrapper>
-          {console.log(Helpers.getAvailablePages(
-              page,
-              props.shoesObject.count,
-              numberOfItems,
-              5,
-          ))}
           <Pagination
             items={
               Helpers.getAvailablePages(
@@ -99,7 +83,7 @@ const HomePage: FunctionComponent<IProps> = (props) => {
             nextAvailable={
               page < Helpers.getNumberOfPages(
                   props.shoesObject.count,
-                  5,
+                  numberOfItems,
               )}
           />
         </StyledPaginationWrapper>

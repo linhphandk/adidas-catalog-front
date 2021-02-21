@@ -52,12 +52,19 @@ export default class Helpers {
         i++) {
         result.push(i);
       }
-
+      if (result.length === 0) {
+        return [];
+      }
+      /**
+       * Add page to the beginning until you
+       * have shownPages length
+       */
       while (result.length < shownPages && result[0] !== 1) {
         result.unshift(result[0] - 1);
       }
       return result;
     };
+
   /**
    * @param {number} count - total number of items
    * @param {number} itemsPerPage - number of items

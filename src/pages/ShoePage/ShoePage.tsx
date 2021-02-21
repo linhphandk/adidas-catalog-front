@@ -4,7 +4,7 @@ import React, {useEffect, useState} from 'react';
 import {useParams} from 'react-router-dom';
 import {IShoes} from 'src/ducks/ShoesList/IShoesList';
 import styled from 'styled-components';
-import Slider from '../../components/Slider/Slider';
+import Slider from '@Components/Slider';
 import {SHOES_API} from '../../shared';
 
 const ShoePage: React.FC = (props)=>{
