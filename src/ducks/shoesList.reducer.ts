@@ -1,7 +1,7 @@
 import axios, {AxiosResponse} from 'axios';
 import {Reducer} from 'react';
-import {SHOES_API} from '../../shared';
-import {IShoesList} from './IShoesList';
+import {SHOES_API} from '../shared';
+import {IShoesList} from './shoesList.interface';
 
 const ShoesReducer:Reducer<IShoesList, IGetShoesAction> =
   (state = {shoes: [], count: 0}, action) => {

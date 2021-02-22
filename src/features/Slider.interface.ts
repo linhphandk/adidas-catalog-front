@@ -1,4 +1,4 @@
-import {IShoesImage} from 'src/ducks/ShoesList/IShoesList';
+import {IShoesImage} from 'src/ducks/shoesList.interface';
 
 export interface ISliderProps{
     images:IShoesImage[],

@@ -55,7 +55,6 @@ export default class Helpers {
       } else {
         result[Math.floor(positionIndicator)] = activePage;
       }
-      console.log(result);
       return Helpers.getPopulatedArray(result);
     };
 

@@ -1,4 +1,4 @@
-import {IShoesImage} from '../ducks/ShoesList/IShoesList';
+import {IShoesImage} from '../ducks/shoesList.interface';
 import Spooderman from './images/spooderman.jpeg';
 import Cole from './images/cole.png';
 import Widow from './images/widow.jpeg';

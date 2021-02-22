@@ -4,11 +4,11 @@ import React, {
 } from 'react';
 import {connect, MapStateToProps} from 'react-redux';
 import IRootReducer from '../ducks/IRootReducer';
-import {getShoesAction} from '../ducks/ShoesList/reducer_shoesList';
-import {IShoesList} from '../ducks/ShoesList/IShoesList';
-import ItemPreview from '@Components/ItemPreview/ItemPreview';
-import Pagination from '@Components/Pagination';
-import ItemGrid from '@Components/ItemGrid/ItemGrid';
+import {getShoesAction} from '../ducks/shoesList.reducer';
+import {IShoesList} from '../ducks/shoesList.interface';
+import ItemPreview from '@Features/ItemPreview/ItemPreview';
+import Pagination from '@Features/Pagination';
+import ItemGrid from '@Features/ItemGrid/ItemGrid';
 import {
   StyledPaginationWrapper, StyledShoeList,
 } from './Homepage.styles';

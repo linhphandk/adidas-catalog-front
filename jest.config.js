@@ -10,7 +10,8 @@ module.exports = {
       'identity-obj-proxy',
     '.+\\.(svg|jpeg|jpg|png)$':
      '<rootDir>/__mocks__/fileMock.js',
-    '@Components': path.resolve(__dirname, 'src/components'),
+    '^@Features/(.+)$': path.resolve(__dirname, 'src/features/$1'),
+    '^@Components/(.+)$': path.resolve(__dirname, 'src/components/$1'),
     '^@Images/(.+)$': '<rootDir>/src/assets/images/$1',
     '@Helpers/(.+)$': '<rootDir>/src/helpers/$1',
     '@Mockdata/(.+)$': '<rootDir>/src/mockdata/$1',

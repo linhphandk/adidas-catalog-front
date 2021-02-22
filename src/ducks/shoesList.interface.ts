@@ -1,3 +1,4 @@
+/* eslint-disable semi */
 /* eslint-disable camelcase */
 export default interface IShoesDetail{
     shoes_id: number,
@@ -14,7 +15,6 @@ export default interface IShoesDetail{
     sale_price: number
     url: string
 };
-
 export interface IShoesList {
     shoes: IShoesDetail[],
     count: number

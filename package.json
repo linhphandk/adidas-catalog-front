@@ -73,6 +73,7 @@
     "webpack-dev-server": "^3.11.2"
   },
   "_moduleAliases": {
+    "@Features": "./src/features",
     "@Components": "./src/components",
     "@Images": "./src/assets/images",
     "@Helpers": "./src/helpers",
