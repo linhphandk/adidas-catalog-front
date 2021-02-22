@@ -11,6 +11,7 @@ import {IReview} from 'src/ducks/reviews.interface';
 import Review from '@Features/Review';
 import loadingBase64 from '@Images/loading.base64';
 import {BaseButtonCss} from '@Components/Button.style';
+import BackButton from '@Components/BackButton';
 
 const ShoePage: React.FC = ()=>{
   const {id} = useParams<IUrlParams>();
@@ -67,6 +68,12 @@ const ShoePage: React.FC = ()=>{
   };
   return (
     <StyledShoePage>
+      <StyledBackButtonWrapper>
+        <BackButton
+          backUrl="/"
+          backText="Back to Listing"
+        />
+      </StyledBackButtonWrapper>
       <StyledMainContainer>
         <StyledSliderWrapper>
           <Slider
@@ -122,6 +129,14 @@ const ShoePage: React.FC = ()=>{
 interface IUrlParams{
   id: string
 }
+const StyledBackButtonWrapper = styled.div`
+  text-align:center;
+  margin-bottom:10px;
+  @media only screen and (min-width: 768px){
+    margin-bottom:20px;
+  }
+}
+`;
 const StyledReviewFormWrapper = styled.div`
   margin-bottom: 15px;
 `;
