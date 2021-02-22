@@ -2,7 +2,7 @@ import TextArea from './TextArea';
 import React from 'react';
 export default {
   title: 'Components/TextArea',
-  components: TextArea,
+  component: TextArea,
 };
 
 export const Primary = () => (

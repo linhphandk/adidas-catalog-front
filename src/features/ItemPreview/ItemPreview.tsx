@@ -9,19 +9,25 @@ import {
 } from './ItemPreview.style';
 import LoadingIcon from '@Images/loading.base64';
 import {IItemPreviewProps} from './ItemPreview.interface';
-
+import NA from '@Images/na.png';
 const ItemPreview: FunctionComponent<IItemPreviewProps> = (props) => {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [image, setImage] = useState<string>(props.image);
   return (
     <StyledPreview>
       <StyledLink to={'shoes/'+props.itemId}>
         <StyledPreviewImage
-          src={props.image}
+          src={image}
           className={
             isLoaded ? '' : 'hide'
           }
-          onLoad={()=>{
+          onLoad={() => {
             setIsLoaded(true);
+          }}
+
+          onError={() => {
+            setIsLoaded(true);
+            setImage(NA);
           }}
         />
         <StyledLoadingIcon

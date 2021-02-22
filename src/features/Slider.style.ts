@@ -19,14 +19,6 @@ export const StyledImageWrapper = styled.div`
 
 `;
 
-export const StyledSliderImage = styled.img`
-  display:none;
-  width:100%;
-  object-fit: cover;
-  &.active{
-    display:block
-  }
-`;
 
 export const StyledSliderButton = styled.img`
 height:10%;
@@ -41,5 +33,3 @@ opacity: 0.5;
   opacity:1
 }
 `;
-
-StyledSliderImage.displayName = 'StyledSliderImage';

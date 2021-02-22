@@ -3,6 +3,7 @@ import ShoesImagesMock from '@Mockdata/ShoesMock';
 import React from 'react';
 import Slider from './Slider';
 import {JSDOM} from 'jsdom';
+import SliderItem from './SliderItem';
 const doc = new JSDOM('<!doctype html><html><body></body></html>');
 global.document = doc.window.document;
 global.window = doc.window as unknown as Window & typeof globalThis;
@@ -14,7 +15,7 @@ describe('Slider', ()=>{
           defaultIndex={1}
         />);
 
-    expect(component.find('StyledSliderImage').length).toBe(5);
+    expect(component.find(SliderItem).length).toBe(5);
   });
 
   it('default image should have .active class', ()=>{
@@ -25,9 +26,10 @@ describe('Slider', ()=>{
 
     expect(
         component
-            .find('StyledSliderImage')
+            .find(SliderItem)
             .at(2)
-            .hasClass('active'),
+            .props()
+            .isActive,
     ).toBeTruthy();
   });
 
@@ -38,9 +40,10 @@ describe('Slider', ()=>{
           defaultIndex={1} />);
     expect(
         component
-            .find('StyledSliderImage')
+            .find(SliderItem)
             .at(1)
-            .hasClass('active'),
+            .props()
+            .isActive,
     ).toBeTruthy();
   });
 
@@ -56,9 +59,10 @@ describe('Slider', ()=>{
 
     expect(
         component
-            .find('StyledSliderImage')
+            .find(SliderItem)
             .at(1)
-            .hasClass('active'),
+            .props()
+            .isActive,
     ).toBeTruthy();
   });
   it('should not be able to go to previous when on first image', () => {
@@ -72,9 +76,10 @@ describe('Slider', ()=>{
     component.find('.button__prev').simulate('click');
     expect(
         component
-            .find('StyledSliderImage')
+            .find(SliderItem)
             .at(0)
-            .hasClass('active'),
+            .props()
+            .isActive,
     ).toBeTruthy();
   });
 
@@ -91,9 +96,10 @@ describe('Slider', ()=>{
 
     expect(
         component
-            .find('StyledSliderImage')
+            .find(SliderItem)
             .last()
-            .hasClass('active'),
+            .props()
+            .isActive,
     ).toBeTruthy();
   });
 
@@ -122,9 +128,10 @@ describe('Slider', ()=>{
 
     expect(
         component
-            .find('StyledSliderImage')
+            .find(SliderItem)
             .at(1)
-            .hasClass('active'),
+            .props()
+            .isActive,
     ).toBeTruthy();
     done();
   });
@@ -165,12 +172,12 @@ describe('Slider', ()=>{
         },
       ],
     });
-
     expect(
         component
-            .find('StyledSliderImage')
+            .find(SliderItem)
             .first()
-            .hasClass('active'),
+            .props()
+            .isActive,
     ).toBeTruthy();
     done();
   });

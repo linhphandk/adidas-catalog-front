@@ -2,7 +2,7 @@ import Input from './Input';
 import React from 'react';
 export default {
   title: 'Components/Input',
-  components: Input,
+  component: Input,
 };
 
 export const Primary = () => (

@@ -8,9 +8,9 @@ import {
   StyledSliderWrapper,
   StyledSliderButton,
   StyledImageWrapper,
-  StyledSliderImage,
   StyledLoadingIcon,
 } from './Slider.style';
+import SliderItem from './SliderItem';
 const Slider:FC<ISliderProps> = (props)=>{
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [imageIndexes, setImageIndexes] = useState<number[]>(
@@ -89,15 +89,15 @@ const Slider:FC<ISliderProps> = (props)=>{
         {
           props.images?.map((image) => {
             return (
-              <StyledSliderImage
+              <SliderItem
                 key={image.shoes_image_id}
-                src={image.image}
-                className={
+                image={image.image}
+                isActive={
                 props.images?.indexOf(image)===imageIndexes[activeImageIndex]&&
                 props.images.length === numberOfLoadedImages?
-                    'active' : ''
+                    true : false
                 }
-                onLoad={imageLoadedHandler}
+                imageLoadedHandler={imageLoadedHandler}
               />
 
             );

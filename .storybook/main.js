@@ -28,11 +28,22 @@ module.exports = {
     },
   },
   webpackFinal: (config) => {
+    custom.module.rules.push({
+      test: /\.stories\.tsx?$/,
+      loaders: [{
+        loader: require.resolve('@storybook/source-loader'),
+        options: {
+          parser: 'typescript'
+        },
+      }, ],
+      enforce: 'pre',
+    })
     return {
       ...config,
       module: {
         ...config.module,
-        rules: custom.module.rules
+        rules: config.module.rules
+        
       },
       resolve: {
         ...config.resolve,

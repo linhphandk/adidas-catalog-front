@@ -3,7 +3,7 @@ import Pagination from './Pagination';
 import React from 'react';
 export default {
   title: 'Components/Pagination',
-  Components: Pagination,
+  component: Pagination,
 } as Meta;
 
 export const Primary = ()=>

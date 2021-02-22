@@ -4,7 +4,7 @@ import BackButton from './BackButton';
 
 export default {
   title: 'Components/Back Button',
-  components: BackButton,
+  component: BackButton,
 };
 
 export const Primary = () => (
